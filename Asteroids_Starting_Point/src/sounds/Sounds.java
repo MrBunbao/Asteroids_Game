@@ -185,6 +185,7 @@ public class Sounds {
 		}
 	}
 
+	// Plays the big saucer clip in a loop
 	@SuppressWarnings("static-access")
 	public void playSaucerBigClip() {
 
@@ -201,11 +202,7 @@ public class Sounds {
 			saucerBigClip.stop();
 		}
 	}
-	public void stopSaucerSmallClip() {
-		if (saucerSmallClip != null && saucerBigClip.isRunning()) {
-			saucerSmallClip.stop();
-		}
-	}
+
 
 	@SuppressWarnings("static-access")
 	public void playSaucerSmallClip() {
@@ -216,6 +213,12 @@ public class Sounds {
 			}
 			saucerSmallClip.setFramePosition(0);
 			saucerSmallClip.loop(saucerSmallClip.LOOP_CONTINUOUSLY);
+		}
+	}
+	
+	public void stopSaucerSmallClip() {
+		if (saucerSmallClip != null && saucerSmallClip.isRunning()) {
+			saucerSmallClip.stop();
 		}
 	}
 

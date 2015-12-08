@@ -35,7 +35,7 @@ public class AlienShip extends Participant implements ShipDestroyer, ActionListe
 		this.controller = controller;
 		outline = createAlienShipOutline(isSmall);
 		pathChanger = new  Timer(750, this);
-		firingTimer = new  Timer(1250, this);
+		firingTimer = new  Timer(2000, this);
 		setPosition((Constants.RANDOM.nextBoolean() ? 0 : Constants.SIZE), 25+ Constants.RANDOM.nextInt(700));
 		setRotation(Math.PI);
 		pathChanger.start();
@@ -90,7 +90,7 @@ public class AlienShip extends Participant implements ShipDestroyer, ActionListe
 		poly.lineTo(4 ,4);
 		poly.lineTo(9,0);
 		poly.closePath();
-		poly.transform(AffineTransform.getScaleInstance(1.25, 1.25));
+		poly.transform(AffineTransform.getScaleInstance(1.1, 1.1));
 		if(!isSmall){
 		poly.transform(AffineTransform.getScaleInstance(2, 2));
 		}

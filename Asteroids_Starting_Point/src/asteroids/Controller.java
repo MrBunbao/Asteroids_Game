@@ -227,12 +227,6 @@ public class Controller implements KeyListener, ActionListener
         // Null out the ship
         ship = null;
         
-        //alien ship wont appear at a transition
-        if(alienShipTimer.isRunning())
-        {
-        alienShipTimer.stop();
-        }
-        
         // Display a legend
         display.setLegend("Loser");
 
@@ -403,8 +397,9 @@ public class Controller implements KeyListener, ActionListener
     	clear();
     	placeAsteroids(level);
         placeShip();
-    	alienShipTimer.start();
+    	alienShipTimer.restart();
     	beatTimer.stop();
+    	beatTimer.setDelay(INITIAL_BEAT);
     	beatTimer.start();
 	}
 	/**
