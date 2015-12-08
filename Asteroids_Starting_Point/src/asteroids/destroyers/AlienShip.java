@@ -64,10 +64,10 @@ public class AlienShip extends Participant implements ShipDestroyer, ActionListe
 		
 		switch(Constants.RANDOM.nextInt(3)){
 		case 0:
-			direction += (1/(2*Math.PI));
+			direction += 1;
 			break;
 		case 1:
-			direction -= (1/(2*Math.PI));
+			direction -= 1;
 			break;		
 		default:
 			break;
