@@ -226,9 +226,6 @@ public class Controller implements KeyListener, ActionListener
     {
         // Null out the ship
         ship = null;
-        
-        // Display a legend
-        display.setLegend("Loser");
 
         // Decrement lives
         lives--;
