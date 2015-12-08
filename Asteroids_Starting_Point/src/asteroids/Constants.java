@@ -126,12 +126,6 @@ public class Constants
      */
     public final static int FAST_ASTEROID_SPEED = 5;
     
-    /**
-     * bullet dimensions.
-     */
-    public final static int BULLETX = 3;
-    public final static int BULLETY = 1;
-    
 	/**
 	 * Duration in milliseconds of a bullet before it disappears.
 	 */
