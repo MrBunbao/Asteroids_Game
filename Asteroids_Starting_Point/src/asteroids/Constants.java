@@ -1,9 +1,6 @@
 package asteroids;
 
-import java.awt.geom.Path2D;
 import java.util.Random;
-
-import javafx.scene.shape.*;
 
 
 

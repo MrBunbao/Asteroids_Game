@@ -4,7 +4,6 @@ import asteroids.Participant;
 import asteroids.destroyers.AsteroidDestroyer;
 import asteroids.destroyers.ShipDestroyer;
 import asteroids.participants.Bullet;
-import asteroids.destroyers.BulletDestroyer;
 
 /**
  * This is the ships bullet class, it extendes the standard bullet class but destroys asteroids and 

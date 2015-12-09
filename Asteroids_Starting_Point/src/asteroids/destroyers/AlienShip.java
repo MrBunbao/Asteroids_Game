@@ -13,7 +13,6 @@ import asteroids.Participant;
 import asteroids.participants.Debris;
 import asteroids.participants.EnemyBullet;
 import asteroids.participants.Ship;
-import sounds.Sounds;
 
 public class AlienShip extends Participant implements ShipDestroyer, ActionListener {
 

@@ -1,7 +1,6 @@
 package asteroids.participants;
 
 import asteroids.Constants;
-import java.util.Random;
 import asteroids.Participant;
 import java.awt.Shape;
 import java.awt.geom.Path2D;

@@ -9,8 +9,7 @@ import asteroids.Participant;
 import asteroids.destroyers.AsteroidDestroyer;
 import asteroids.destroyers.ShipDestroyer;
 import static asteroids.Constants.*;
-import asteroids.destroyers.BulletDestroyer;
-import sounds.Sounds;
+
 
 /**
  * Represents asteroids
