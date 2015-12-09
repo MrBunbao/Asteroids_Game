@@ -22,7 +22,7 @@ public class Ship extends Participant implements ShipDestroyer, AsteroidDestroye
     private Shape flameOffOutline;
     private Shape flameOnOutline;
     private boolean flameAppears;
-    private boolean accelerateCheck;
+    private boolean isAccelerating;
     
     
     // Constructs a ship at the specified coordinates
@@ -33,7 +33,7 @@ public class Ship extends Participant implements ShipDestroyer, AsteroidDestroye
         this.setPosition(x, y);
         this.setRotation(direction);
         this.flameAppears = true;
-        this.accelerateCheck = false;
+        this.isAccelerating = false;
         
         Path2D.Double poly = new Path2D.Double();
         poly.moveTo(20, 0);
@@ -82,7 +82,7 @@ public class Ship extends Participant implements ShipDestroyer, AsteroidDestroye
     @Override
     protected Shape getOutline ()
     {
-        if(accelerateCheck)
+        if(isAccelerating)
         {
         	if(flameAppears){
         		return flameOnOutline;
@@ -125,11 +125,12 @@ public class Ship extends Participant implements ShipDestroyer, AsteroidDestroye
     {
         accelerate(Constants.SHIP_ACCELERATION);
 
-        if(accelerateCheck == true){
+        if(isAccelerating == true){
 
             Ship.getSounds().playThrustClip();
         }
-        accelerateCheck = true;
+        // This will change the boolean isAccelerating to true when accelerate is called
+        isAccelerating = true;
     }
     
     /**
@@ -137,10 +138,11 @@ public class Ship extends Participant implements ShipDestroyer, AsteroidDestroye
      */
     public void notAccelerating ()
     {
-    	if(accelerateCheck == false){
+    	if(isAccelerating == false){
             Ship.getSounds().stopThrustClip();
         }
-        accelerateCheck = false;
+    	// This will change the boolean isAccelerating to false when notAccelerating is called
+        isAccelerating = false;
     }
 
 
@@ -162,6 +164,8 @@ public class Ship extends Participant implements ShipDestroyer, AsteroidDestroye
             controller.addParticipant(new Debris(this.getX(), this.getY(), 15));
             controller.addParticipant(new Debris(this.getX(), this.getY(), 13));
             controller.addParticipant(new Debris(this.getX(), this.getY(), 7));
+            controller.addParticipant(new Debris(this.getX(), this.getY(), 10));
+            controller.addParticipant(new Debris(this.getX(), this.getY(), 6));
             
             // Tell the controller the ship was destroyed
             controller.shipDestroyed();
