@@ -218,13 +218,15 @@ public class Sounds {
 		}
 	}
 
+
+	@SuppressWarnings("static-access")
 	public void playThrustClip() {
 		if (thrustClip != null) {
 			if (thrustClip.isRunning()) {
 				thrustClip.stop();
 			}
 			thrustClip.setFramePosition(0);
-			thrustClip.loop(0);
+			thrustClip.loop(thrustClip.LOOP_CONTINUOUSLY);
 		}
 	}
 
