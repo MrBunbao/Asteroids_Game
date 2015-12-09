@@ -1,13 +1,9 @@
 package sounds;
 
-import java.awt.event.ActionListener;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import javax.sound.sampled.*;
-import javax.swing.*;
 
-import asteroids.Constants;
-import asteroids.Controller;
 
 /**
  * The sound library. This will also pre create the clips so that there will be
@@ -228,7 +224,7 @@ public class Sounds {
 				thrustClip.stop();
 			}
 			thrustClip.setFramePosition(0);
-			thrustClip.loop(10);
+			thrustClip.loop(0);
 		}
 	}
 
