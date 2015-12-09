@@ -19,10 +19,10 @@ import static asteroids.Constants.*;
  */
 public class Controller implements KeyListener, ActionListener
 {
-	//the current level
+	// The current level
 	private int level;
 	
-	//total score
+	// Total score
 	private int score;
     
 	// The state of all the Participants
@@ -43,20 +43,32 @@ public class Controller implements KeyListener, ActionListener
     // Number of lives left
     private int lives;
 
-    // calls the alien ship
+    // Calls the alien ship
     private Timer alienShipTimer;
     
     // The game display
     private Display display;
     
+    // Will easily help make left rotations with a boolean
     private boolean turnLeft;
+    
+    // Will easily help make right rotations with a boolean
     private boolean turnRight;
+    
+    // Will easily help to go forward with a boolean
     private boolean goForward;
+    
+    // Helps to fire the bullets in a later method
     private boolean fireBullet;
     
+    // This timer will help delay the beat the correct amount between each beat
     private Timer beatTimer;
     
+    // Will go between 1 and 2 to play the beat
     private int alternateBeat;
+    
+    // Used to get the return of the getAlienShip
+    private AlienShip alienShip;
     
 
     /**
@@ -95,6 +107,14 @@ public class Controller implements KeyListener, ActionListener
     public Ship getShip ()
     {
         return ship;
+    }
+    
+    /**
+     * Returns the alienShip, or null if there isn't one
+     */
+    public AlienShip getAlienShip()
+    {
+    	return alienShip;
     }
 
     /**
@@ -162,6 +182,10 @@ public class Controller implements KeyListener, ActionListener
         if(ship != null){
         ship.notAccelerating();
         ship = null;
+        }
+        if(alienShip != null)
+        {
+        	alienShip = null;
         }
     }
 
@@ -404,6 +428,7 @@ public class Controller implements KeyListener, ActionListener
 	 */
 	public void callAlienShip(int level){
 		AlienShip aShip;
+		
 		if(level > 2){
 			aShip = new AlienShip(Constants.RANDOM.nextBoolean(),this);
 		}else{
