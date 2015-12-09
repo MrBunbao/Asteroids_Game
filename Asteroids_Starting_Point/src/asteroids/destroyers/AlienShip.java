@@ -34,9 +34,9 @@ public class AlienShip extends Participant implements ShipDestroyer, ActionListe
 		worth += (isSmall ? 800: 0);
 		this.controller = controller;
 		outline = createAlienShipOutline(isSmall);
-		pathChanger = new  Timer(750, this);
+		pathChanger = new  Timer(1000, this);
 		firingTimer = new  Timer(2000, this);
-		setPosition((Constants.RANDOM.nextBoolean() ? 0 : Constants.SIZE), 25+ Constants.RANDOM.nextInt(700));
+		setPosition((Constants.RANDOM.nextBoolean() ? 0 : Constants.SIZE), 25 + Constants.RANDOM.nextInt(700));
 		setRotation(Math.PI);
 		pathChanger.start();
 		firingTimer.start();
@@ -111,7 +111,8 @@ public class AlienShip extends Participant implements ShipDestroyer, ActionListe
 			controller.addParticipant(new Debris(this.getX(), this.getY(), 15));
             controller.addParticipant(new Debris(this.getX(), this.getY(), 13));
             controller.addParticipant(new Debris(this.getX(), this.getY(), 7));
-            
+            controller.addParticipant(new Debris(this.getX(), this.getY(), 5));
+            controller.addParticipant(new Debris(this.getX(), this.getY(), 10));
 		}
 		if(p instanceof ShipDestroyer && !(p instanceof EnemyBullet)){
 			playShipClip(false);
@@ -121,7 +122,8 @@ public class AlienShip extends Participant implements ShipDestroyer, ActionListe
 			controller.addParticipant(new Debris(this.getX(), this.getY(), 15));
             controller.addParticipant(new Debris(this.getX(), this.getY(), 13));
             controller.addParticipant(new Debris(this.getX(), this.getY(), 7));
-            
+            controller.addParticipant(new Debris(this.getX(), this.getY(), 5));
+            controller.addParticipant(new Debris(this.getX(), this.getY(), 10));
 		}
 		
 	}
