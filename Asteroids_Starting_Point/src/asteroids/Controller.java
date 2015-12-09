@@ -243,6 +243,9 @@ public class Controller implements KeyListener, ActionListener {
 		// Changes the display of lives
 		display.setLives(lives);
 
+		// Stops the beat from playing
+		beatTimer.stop();
+		
 		// Since the ship was destroyed, schedule a transition
 		scheduleTransition(END_DELAY);
 	}
