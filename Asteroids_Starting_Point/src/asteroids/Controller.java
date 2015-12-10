@@ -369,6 +369,7 @@ public class Controller implements KeyListener, ActionListener {
 
 			// If the ship was destroyed, place a new one and continue
 			else if (ship == null) {
+				beatTimer.restart();
 				placeShip();
 			}
 
