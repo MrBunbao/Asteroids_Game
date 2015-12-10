@@ -157,11 +157,16 @@ public class Asteroid extends Participant implements ShipDestroyer
             	controller.addParticipant(new Debris(this.getX(), this.getY(), 1));
             }
             
+            // Inform the controller
+            if(!(p instanceof EnemyBullet)){
+            	controller.asteroidDestroyed(size);
+            }
+            
             // Create two smaller asteroids. Put them at the same position
             // as the one that was just destroyed and give them a random
             // direction.
             int size = getSize() - 1;
-            // High
+            
             if (size == 1)
             {
                 controller.addParticipant(new Asteroid(RANDOM.nextInt(4), size, getX(), getY(), Constants.MEDIUM_ASTEROID_SPEED, controller));
@@ -173,10 +178,7 @@ public class Asteroid extends Participant implements ShipDestroyer
                 controller.addParticipant(new Asteroid(RANDOM.nextInt(4), size, getX(), getY(), Constants.FAST_ASTEROID_SPEED, controller));
             }
             
-            // Inform the controller
-            if(p instanceof EnemyBullet){
-            	controller.asteroidDestroyed(size);
-            }
+
         }
     }
 }
