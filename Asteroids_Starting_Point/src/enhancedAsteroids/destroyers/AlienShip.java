@@ -16,7 +16,7 @@ import enhancedAsteroids.participants.Debris;
 import enhancedAsteroids.participants.EnemyBullet;
 import enhancedAsteroids.participants.Ship;
 
-public class AlienShip extends Participant implements ShipDestroyer, ActionListener {
+public class AlienShip extends Participant implements ShipDestroyer, AsteroidDestroyer, ActionListener {
 	
 	// Point value
 	private int worth;

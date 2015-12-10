@@ -7,6 +7,8 @@ import enhancedAsteroids.Constants;
 import enhancedAsteroids.EnhancedController;
 import enhancedAsteroids.Participant;
 import enhancedAsteroids.destroyers.AsteroidDestroyer;
+import enhancedAsteroids.destroyers.EnemyBulletDestroyer;
+import enhancedAsteroids.destroyers.FriendlyBulletDestroyer;
 import enhancedAsteroids.destroyers.ShipDestroyer;
 import static enhancedAsteroids.Constants.*;
 
@@ -14,7 +16,7 @@ import static enhancedAsteroids.Constants.*;
 /**
  * Represents asteroids
  */
-public class Asteroid extends Participant implements ShipDestroyer
+public class Asteroid extends Participant implements ShipDestroyer, EnemyBulletDestroyer, FriendlyBulletDestroyer
 {
     // The size of the asteroid (0 = small, 1 = medium, 2 = large)
     private int size;
@@ -61,14 +63,13 @@ public class Asteroid extends Participant implements ShipDestroyer
     }
 
     /**
-     * Creates the outline of the asteroid based on its variety and size.
+     * Creates the outline of the asteroid based on its variety (variety is random) and size. 
      */
     private void createAsteroidOutline (int variety, int size)
     {
         // This will contain the outline
         Path2D.Double poly = new Path2D.Double();
 
-        // Fill out according to variety
         if (variety == 0)
         {
             poly.moveTo(0, -30);
@@ -146,22 +147,27 @@ public class Asteroid extends Participant implements ShipDestroyer
     @Override
     public void collidedWith (Participant p)
     {
+    	
         if (p instanceof AsteroidDestroyer)
         {
             // Expire the asteroid
             expire(this);
             
-            // This creates the debris for the asteroid when hit
+            // This creates the debris (runs 4 times) for the asteroid when hit
             for(int i = 0; i <= 4; i++)
             {
             	controller.addParticipant(new Debris(this.getX(), this.getY(), 1));
+            }
+            
+            // Inform the controller
+            if(!(p instanceof EnemyBulletDestroyer)){
+            	controller.asteroidDestroyed(size);
             }
             
             // Create two smaller asteroids. Put them at the same position
             // as the one that was just destroyed and give them a random
             // direction.
             int size = getSize() - 1;
-            
             
             if (size == 1)
             {
@@ -174,11 +180,7 @@ public class Asteroid extends Participant implements ShipDestroyer
                 controller.addParticipant(new Asteroid(RANDOM.nextInt(4), size, getX(), getY(), Constants.FAST_ASTEROID_SPEED, controller));
             }
             
-            // Inform the controller
-            if(!(p instanceof EnemyBullet)){
-            	controller.asteroidDestroyed(size);
 
-            }
         }
     }
 }

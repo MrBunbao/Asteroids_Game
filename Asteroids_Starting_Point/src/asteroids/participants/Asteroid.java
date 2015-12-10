@@ -7,6 +7,8 @@ import asteroids.Constants;
 import asteroids.Controller;
 import asteroids.Participant;
 import asteroids.destroyers.AsteroidDestroyer;
+import asteroids.destroyers.EnemyBulletDestroyer;
+import asteroids.destroyers.FriendlyBulletDestroyer;
 import asteroids.destroyers.ShipDestroyer;
 import static asteroids.Constants.*;
 
@@ -14,7 +16,7 @@ import static asteroids.Constants.*;
 /**
  * Represents asteroids
  */
-public class Asteroid extends Participant implements ShipDestroyer
+public class Asteroid extends Participant implements ShipDestroyer, EnemyBulletDestroyer, FriendlyBulletDestroyer
 {
     // The size of the asteroid (0 = small, 1 = medium, 2 = large)
     private int size;
@@ -158,7 +160,7 @@ public class Asteroid extends Participant implements ShipDestroyer
             }
             
             // Inform the controller
-            if(!(p instanceof EnemyBullet)){
+            if(!(p instanceof EnemyBulletDestroyer)){
             	controller.asteroidDestroyed(size);
             }
             
