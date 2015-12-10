@@ -55,18 +55,6 @@ public class AlienShip extends Participant implements ShipDestroyer, ActionListe
 		}
 	}
 	
-//	private void playShipClip(boolean onOff){
-//		if(worth == 1000 && onOff ){
-//			getSounds().playSaucerSmallClip();;
-//		}else if(worth == 200 && !onOff){
-//			getSounds().stopSaucerSmallClip();
-//		}else if(onOff){
-//			getSounds().playSaucerBigClip();
-//		}else{
-//			getSounds().stopSaucerBigClip();
-//		}
-//	}
-	
 	/**
 	 * Alien Ship direction and speed
 	 */
@@ -116,6 +104,10 @@ public class AlienShip extends Participant implements ShipDestroyer, ActionListe
 		}
 		return poly;
 	}
+	
+	/**
+	 * Get's the outline of the alien ship
+	 */
 	@Override
 	protected Shape getOutline() {
 		return outline;
@@ -146,6 +138,7 @@ public class AlienShip extends Participant implements ShipDestroyer, ActionListe
             controller.addParticipant(new Debris(this.getX(), this.getY(), 10));
 		}
 		
+		// Stops the saucer sound
 		if(worth == 200)
 		{
 			getSounds().stopSaucerBigClip();
@@ -154,8 +147,11 @@ public class AlienShip extends Participant implements ShipDestroyer, ActionListe
 		{
 			getSounds().stopSaucerSmallClip();
 		}
-		
 	}
+	
+	/**
+	 * Then Alien ships fire timer. If small ship, it will shoot at the player. This is also the path changer of the ship.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if(!this.isExpired())

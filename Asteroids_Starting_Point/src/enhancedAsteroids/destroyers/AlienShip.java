@@ -7,6 +7,8 @@ import java.awt.geom.*;
 
 import javax.swing.Timer;
 
+import enhancedAsteroids.destroyers.AsteroidDestroyer;
+import enhancedAsteroids.destroyers.ShipDestroyer;
 import enhancedAsteroids.Constants;
 import enhancedAsteroids.EnhancedController;
 import enhancedAsteroids.Participant;
@@ -15,22 +17,25 @@ import enhancedAsteroids.participants.EnemyBullet;
 import enhancedAsteroids.participants.Ship;
 
 public class AlienShip extends Participant implements ShipDestroyer, ActionListener {
-
-	//point value
-	private int worth = 200;
+	
+	// Point value
+	private int worth;
 	private EnhancedController controller;
 	private Shape outline;
 	private Timer pathChanger;
 	private Timer firingTimer;
 	private boolean leftOrRight;
+	private int[] alienShipPoints = Constants.ALIEN_SCORE;
 	
 	/**
 	 * The Class that manages the alien ship participants.
+	 * If isSmall boolean == true, that means the alien ship is small.
+	 * The small alien is worth 1000 points. 200 for the medium. 
 	 */
 	public AlienShip(boolean isSmall, EnhancedController controller){
 		
 		leftOrRight = Constants.RANDOM.nextBoolean();
-		worth += (isSmall ? 800: 0);
+		worth = (isSmall ? alienShipPoints[0]: alienShipPoints[1]);
 		this.controller = controller;
 		outline = createAlienShipOutline(isSmall);
 		pathChanger = new  Timer(1000, this);
@@ -39,19 +44,21 @@ public class AlienShip extends Participant implements ShipDestroyer, ActionListe
 		setRotation(Math.PI);
 		pathChanger.start();
 		firingTimer.start();
-		playShipClip(true);
-	}
-	private void playShipClip(boolean onOff){
-		if(worth == 1000 && onOff ){
-			getSounds().playSaucerSmallClip();;
-		}else if(worth == 1000 && !onOff){
-			getSounds().stopSaucerSmallClip();
-		}else if(onOff){
+		
+		// Plays the alien ship noise
+		if(isSmall == false)
+		{
 			getSounds().playSaucerBigClip();
-		}else{
-			getSounds().stopSaucerBigClip();
+		}
+		else
+		{
+			getSounds().playSaucerSmallClip();
 		}
 	}
+	
+	/**
+	 * Alien Ship direction and speed
+	 */
 	private double[] alienVelocity(boolean lorR){
 		double speed = Constants.ALIENSHIP_SPEED[1];
 		if (worth == 1000)
@@ -74,6 +81,9 @@ public class AlienShip extends Participant implements ShipDestroyer, ActionListe
 		return new double[]{speed,direction};
 	}
 	
+	/**
+	 * The outline of the alien ship
+	 */
 	private Shape createAlienShipOutline(boolean isSmall) {
 		Path2D.Double poly = new Path2D.Double();
 		poly.moveTo(-9, 0);
@@ -95,6 +105,10 @@ public class AlienShip extends Participant implements ShipDestroyer, ActionListe
 		}
 		return poly;
 	}
+	
+	/**
+	 * Get's the outline of the alien ship
+	 */
 	@Override
 	protected Shape getOutline() {
 		return outline;
@@ -103,7 +117,7 @@ public class AlienShip extends Participant implements ShipDestroyer, ActionListe
 	@Override
 	public void collidedWith(Participant p) {
 		if(p instanceof AsteroidDestroyer && !(p instanceof EnemyBullet)){
-			playShipClip(false);
+			//playShipClip(false);
 			getSounds().playBangAlienShipClip();
 			controller.etGoneHome(worth);
 			Participant.expire(this);
@@ -114,9 +128,9 @@ public class AlienShip extends Participant implements ShipDestroyer, ActionListe
             controller.addParticipant(new Debris(this.getX(), this.getY(), 10));
 		}
 		if(p instanceof ShipDestroyer && !(p instanceof EnemyBullet)){
-			playShipClip(false);
+			//playShipClip(false);
 			getSounds().playBangAlienShipClip();
-			controller.etGoneHome(0);
+			controller.etGoneHome(worth);
 			Participant.expire(this);
 			controller.addParticipant(new Debris(this.getX(), this.getY(), 15));
             controller.addParticipant(new Debris(this.getX(), this.getY(), 13));
@@ -125,7 +139,20 @@ public class AlienShip extends Participant implements ShipDestroyer, ActionListe
             controller.addParticipant(new Debris(this.getX(), this.getY(), 10));
 		}
 		
+		// Stops the saucer sound
+		if(worth == 200)
+		{
+			getSounds().stopSaucerBigClip();
+		}
+		else
+		{
+			getSounds().stopSaucerSmallClip();
+		}
 	}
+	
+	/**
+	 * Then Alien ships fire timer. If small ship, it will shoot at the player. This is also the path changer of the ship.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if(!this.isExpired())
