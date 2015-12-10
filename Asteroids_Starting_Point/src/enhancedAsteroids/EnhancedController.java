@@ -378,6 +378,11 @@ public class EnhancedController implements KeyListener, ActionListener {
 				beatTimer.restart();
 				placeShip();
 			}
+			else if(alienShip == null)
+			{
+				Participant.getSounds().stopSaucerSmallClip();
+				Participant.getSounds().stopSaucerBigClip();
+			}
 
 			// Moves to next level
 			if (pstate.countAsteroids() == 0) {

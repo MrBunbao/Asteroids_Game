@@ -155,13 +155,13 @@ public class Controller implements KeyListener, ActionListener {
 	 */
 	private void placeAsteroids(int level) {
 		addParticipant(new Asteroid(0, 2, EDGE_OFFSET, EDGE_OFFSET, SLOW_ASTEROID_SPEED, this));
-		addParticipant(new Asteroid(1, 2, SIZE - EDGE_OFFSET, EDGE_OFFSET, SLOW_ASTEROID_SPEED, this));
-		addParticipant(new Asteroid(2, 2, EDGE_OFFSET, SIZE - EDGE_OFFSET, SLOW_ASTEROID_SPEED, this));
-		addParticipant(new Asteroid(3, 2, SIZE - EDGE_OFFSET, SIZE - EDGE_OFFSET, SLOW_ASTEROID_SPEED, this));
-		for (int i = 1; i < level; i++) {
-			addParticipant(new Asteroid(new Random().nextInt(4), 2, new Random().nextInt(5) * EDGE_OFFSET,
-					new Random().nextInt(5) * EDGE_OFFSET, SLOW_ASTEROID_SPEED, this));
-		}
+//		addParticipant(new Asteroid(1, 2, SIZE - EDGE_OFFSET, EDGE_OFFSET, SLOW_ASTEROID_SPEED, this));
+//		addParticipant(new Asteroid(2, 2, EDGE_OFFSET, SIZE - EDGE_OFFSET, SLOW_ASTEROID_SPEED, this));
+//		addParticipant(new Asteroid(3, 2, SIZE - EDGE_OFFSET, SIZE - EDGE_OFFSET, SLOW_ASTEROID_SPEED, this));
+//		for (int i = 1; i < level; i++) {
+//			addParticipant(new Asteroid(new Random().nextInt(4), 2, new Random().nextInt(5) * EDGE_OFFSET,
+//					new Random().nextInt(5) * EDGE_OFFSET, SLOW_ASTEROID_SPEED, this));
+//		}
 	}
 
 	/**
@@ -371,10 +371,14 @@ public class Controller implements KeyListener, ActionListener {
 				beatTimer.restart();
 				placeShip();
 			}
+			else if(alienShip == null)
+			{
+				Participant.getSounds().stopSaucerSmallClip();
+				Participant.getSounds().stopSaucerBigClip();
+			}
 
 			// Moves to next level
 			if (pstate.countAsteroids() == 0) {
-
 				level++;
 				newLevel(level);
 			}
@@ -437,14 +441,14 @@ public class Controller implements KeyListener, ActionListener {
 		if ((keyCode == KeyEvent.VK_S || keyCode == KeyEvent.VK_SPACE) && ship != null) {
 			fireBullet = true;
 		}
-		// We will need to get rid of this code before turning it in. This helps us test through levels quicker
-		if (keyCode == KeyEvent.VK_1) {
-			level++;
-			beatTimer.stop();
-			display.setLegend("Level " + (1 + level));
-			scheduleTransition(END_DELAY);
-			newLevel(level);
-		}
+//		// We will need to get rid of this code before turning it in. This helps us test through levels quicker
+//		if (keyCode == KeyEvent.VK_1) {
+//			level++;
+//			beatTimer.stop();
+//			display.setLegend("Level " + (1 + level));
+//			scheduleTransition(END_DELAY);
+//			newLevel(level);
+//		}
 	}
 
 	/**

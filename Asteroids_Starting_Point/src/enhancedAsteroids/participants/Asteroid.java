@@ -161,11 +161,6 @@ public class Asteroid extends Participant implements ShipDestroyer, EnemyBulletD
             	controller.addParticipant(new Debris(this.getX(), this.getY(), 1));
             }
             
-            // Inform the controller that a bullet is hitting the asteroid
-            if(p instanceof EnemyBullet || p instanceof FriendlyBullet){
-            	controller.asteroidDestroyed(size);
-            }
-            
             // Create two smaller asteroids. Put them at the same position
             // as the one that was just destroyed and give them a random
             // direction.
@@ -182,7 +177,10 @@ public class Asteroid extends Participant implements ShipDestroyer, EnemyBulletD
                 controller.addParticipant(new Asteroid(RANDOM.nextInt(4), size, getX(), getY(), Constants.FAST_ASTEROID_SPEED, controller));
             }
             
-
+            // Inform the controller that a bullet is hitting the asteroid. The +1 will help it so it uses the right case.
+            if(p instanceof EnemyBullet || p instanceof FriendlyBullet){
+            	controller.asteroidDestroyed(size + 1);
+            }
         }
     }
 }
