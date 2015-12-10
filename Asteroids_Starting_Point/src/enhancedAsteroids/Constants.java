@@ -104,6 +104,11 @@ public class Constants
     public final static int[] ALIENSHIP_SPEED = { 6, 4 };
     
     /**
+     * Score earned for alien ships of size small, and medium
+     */
+    public final static int[] ALIEN_SCORE = { 1000, 200 };
+    
+    /**
      * Delay after which an alien ship appears.
      */
     public final static int ALIEN_DELAY = 5000;
