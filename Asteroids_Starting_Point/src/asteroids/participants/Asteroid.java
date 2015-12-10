@@ -61,14 +61,13 @@ public class Asteroid extends Participant implements ShipDestroyer
     }
 
     /**
-     * Creates the outline of the asteroid based on its variety and size.
+     * Creates the outline of the asteroid based on its variety (variety is random) and size. 
      */
     private void createAsteroidOutline (int variety, int size)
     {
         // This will contain the outline
         Path2D.Double poly = new Path2D.Double();
 
-        // Fill out according to variety
         if (variety == 0)
         {
             poly.moveTo(0, -30);
@@ -146,12 +145,13 @@ public class Asteroid extends Participant implements ShipDestroyer
     @Override
     public void collidedWith (Participant p)
     {
+    	
         if (p instanceof AsteroidDestroyer)
         {
             // Expire the asteroid
             expire(this);
             
-            // This creates the debris for the asteroid when hit
+            // This creates the debris (runs 4 times) for the asteroid when hit
             for(int i = 0; i <= 4; i++)
             {
             	controller.addParticipant(new Debris(this.getX(), this.getY(), 1));
@@ -161,7 +161,6 @@ public class Asteroid extends Participant implements ShipDestroyer
             // as the one that was just destroyed and give them a random
             // direction.
             int size = getSize() - 1;
-            
             
             if (size == 1)
             {
@@ -175,9 +174,8 @@ public class Asteroid extends Participant implements ShipDestroyer
             }
             
             // Inform the controller
-            if(!(p instanceof EnemyBullet)){
+            if(p instanceof EnemyBullet){
             	controller.asteroidDestroyed(size);
-
             }
         }
     }
