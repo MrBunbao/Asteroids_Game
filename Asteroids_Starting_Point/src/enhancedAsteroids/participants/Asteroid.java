@@ -3,6 +3,8 @@ package enhancedAsteroids.participants;
 import java.awt.Shape;
 import java.awt.geom.*;
 
+import enhancedAsteroids.participants.EnemyBullet;
+import enhancedAsteroids.participants.FriendlyBullet;
 import enhancedAsteroids.Constants;
 import enhancedAsteroids.EnhancedController;
 import enhancedAsteroids.Participant;
@@ -159,8 +161,8 @@ public class Asteroid extends Participant implements ShipDestroyer, EnemyBulletD
             	controller.addParticipant(new Debris(this.getX(), this.getY(), 1));
             }
             
-            // Inform the controller
-            if(p instanceof EnemyBullet){
+            // Inform the controller that a bullet is hitting the asteroid
+            if(p instanceof EnemyBullet || p instanceof FriendlyBullet){
             	controller.asteroidDestroyed(size);
             }
             

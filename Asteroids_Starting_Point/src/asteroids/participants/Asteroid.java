@@ -159,8 +159,8 @@ public class Asteroid extends Participant implements ShipDestroyer, EnemyBulletD
             	controller.addParticipant(new Debris(this.getX(), this.getY(), 1));
             }
             
-            // Inform the controller
-            if(p instanceof EnemyBullet){
+            // Inform the controller that a bullet is hitting the asteroid
+            if(p instanceof EnemyBullet || p instanceof FriendlyBullet){
             	controller.asteroidDestroyed(size);
             }
             

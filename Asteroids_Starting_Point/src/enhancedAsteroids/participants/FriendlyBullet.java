@@ -2,7 +2,7 @@ package enhancedAsteroids.participants;
 
 import enhancedAsteroids.Participant;
 import enhancedAsteroids.destroyers.AsteroidDestroyer;
-import enhancedAsteroids.destroyers.ShipDestroyer;
+import enhancedAsteroids.destroyers.FriendlyBulletDestroyer;
 import enhancedAsteroids.participants.Bullet;
 
 /**
@@ -17,7 +17,7 @@ public class FriendlyBullet extends Bullet implements AsteroidDestroyer {
 	
 	@Override
     public void collidedWith (Participant p) {
-        if (p instanceof ShipDestroyer || p instanceof Bullet) {
+        if (p instanceof FriendlyBulletDestroyer) {
             Participant.expire(this);
         }
     }
