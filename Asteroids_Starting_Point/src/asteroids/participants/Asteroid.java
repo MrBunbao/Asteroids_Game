@@ -161,7 +161,7 @@ public class Asteroid extends Participant implements ShipDestroyer
             // as the one that was just destroyed and give them a random
             // direction.
             int size = getSize() - 1;
-            
+            // High
             if (size == 1)
             {
                 controller.addParticipant(new Asteroid(RANDOM.nextInt(4), size, getX(), getY(), Constants.MEDIUM_ASTEROID_SPEED, controller));
