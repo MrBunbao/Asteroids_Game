@@ -7,8 +7,8 @@ import java.awt.geom.*;
 
 import javax.swing.Timer;
 
-import asteroids.destroyers.AlienShipDestroyer;
-import enhancedAsteroids.destroyers.AsteroidDestroyer;
+
+import enhancedAsteroids.destroyers.AlienShipDestroyer;
 import enhancedAsteroids.destroyers.ShipDestroyer;
 import enhancedAsteroids.Constants;
 import enhancedAsteroids.EnhancedController;
@@ -17,15 +17,16 @@ import enhancedAsteroids.participants.Debris;
 import enhancedAsteroids.participants.EnemyBullet;
 import enhancedAsteroids.participants.Ship;
 
-public class AlienShip extends Participant implements ShipDestroyer, AsteroidDestroyer, ActionListener {
-	
-	// Point value
+public class AlienShip extends Participant implements ShipDestroyer, FriendlyBulletDestroyer, ActionListener {
+
+	//point value
 	private int worth;
 	private EnhancedController controller;
 	private Shape outline;
 	private Timer pathChanger;
 	private Timer firingTimer;
 	private boolean leftOrRight;
+	// The points 
 	private int[] alienShipPoints = Constants.ALIEN_SCORE;
 	
 	/**
@@ -129,16 +130,6 @@ public class AlienShip extends Participant implements ShipDestroyer, AsteroidDes
             getSounds().stopSaucerBigClip();
             getSounds().stopSaucerSmallClip();
 		}
-		
-		// Stops the saucer sound
-		if(worth == 200)
-		{
-			getSounds().stopSaucerBigClip();
-		}
-		else
-		{
-			getSounds().stopSaucerSmallClip();
-		}
 	}
 	
 	/**
@@ -151,6 +142,8 @@ public class AlienShip extends Participant implements ShipDestroyer, AsteroidDes
 			if(arg0.getSource() == pathChanger){
 				double[] velo = alienVelocity(leftOrRight);
 				this.setVelocity(velo[0], velo[1]);
+				
+				
 			}else if(arg0.getSource() == firingTimer){
 				double shipdir;
 				if(controller.getShip() == null)

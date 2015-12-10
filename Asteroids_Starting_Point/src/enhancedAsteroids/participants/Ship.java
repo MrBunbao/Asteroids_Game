@@ -3,6 +3,7 @@ package enhancedAsteroids.participants;
 import java.awt.Shape;
 import java.awt.geom.*;
 
+import enhancedAsteroids.destroyers.AlienShipDestroyer;
 import enhancedAsteroids.Constants;
 import enhancedAsteroids.EnhancedController;
 import enhancedAsteroids.Participant;
@@ -13,7 +14,7 @@ import enhancedAsteroids.participants.Debris;
 /**
  * Represents ships
  */
-public class Ship extends Participant implements ShipDestroyer, AsteroidDestroyer
+public class Ship extends Participant implements ShipDestroyer, AlienShipDestroyer, AsteroidDestroyer
 {
     // Game controller
     private EnhancedController controller;

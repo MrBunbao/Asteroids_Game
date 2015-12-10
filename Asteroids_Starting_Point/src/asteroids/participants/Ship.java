@@ -13,7 +13,7 @@ import asteroids.participants.Debris;
 /**
  * Represents ships
  */
-public class Ship extends Participant implements ShipDestroyer, AsteroidDestroyer
+public class Ship extends Participant implements ShipDestroyer, AlienShipDestroyer, AsteroidDestroyer
 {
     // Game controller
     private Controller controller;

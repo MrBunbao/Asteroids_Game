@@ -15,7 +15,7 @@ import enhancedAsteroids.destroyers.AlienShip;
 import enhancedAsteroids.participants.Asteroid;
 import enhancedAsteroids.participants.Ship;
 
-import static asteroids.Constants.END_DELAY;
+import static enhancedAsteroids.Constants.END_DELAY;
 import static enhancedAsteroids.Constants.*;
 
 /**

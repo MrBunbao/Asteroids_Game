@@ -3,22 +3,23 @@ package enhancedAsteroids.participants;
 import java.awt.Shape;
 import java.awt.geom.*;
 
+import enhancedAsteroids.destroyers.AlienShipDestroyer;
 import enhancedAsteroids.participants.EnemyBullet;
 import enhancedAsteroids.participants.FriendlyBullet;
-import enhancedAsteroids.Constants;
 import enhancedAsteroids.EnhancedController;
 import enhancedAsteroids.Participant;
 import enhancedAsteroids.destroyers.AsteroidDestroyer;
 import enhancedAsteroids.destroyers.EnemyBulletDestroyer;
 import enhancedAsteroids.destroyers.FriendlyBulletDestroyer;
 import enhancedAsteroids.destroyers.ShipDestroyer;
+import enhancedAsteroids.Constants;
 import static enhancedAsteroids.Constants.*;
 
 
 /**
  * Represents asteroids
  */
-public class Asteroid extends Participant implements ShipDestroyer, EnemyBulletDestroyer, FriendlyBulletDestroyer
+public class Asteroid extends Participant implements ShipDestroyer, AlienShipDestroyer, EnemyBulletDestroyer, FriendlyBulletDestroyer
 {
     // The size of the asteroid (0 = small, 1 = medium, 2 = large)
     private int size;

@@ -4,11 +4,15 @@
 package enhancedAsteroids.participants;
 
 import enhancedAsteroids.destroyers.EnemyBulletDestroyer;
+import enhancedAsteroids.participants.Bullet;
 import enhancedAsteroids.Participant;
 import enhancedAsteroids.destroyers.AsteroidDestroyer;
 import enhancedAsteroids.destroyers.ShipDestroyer;
 
 /**
+ * This is the Alien Ships bullet class, it extends the standard bullet class but destroys asteroids and 
+ * the players ship.
+ * 
  * @author Lincoln Matheson
  *
  */
