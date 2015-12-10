@@ -9,6 +9,9 @@ import asteroids.destroyers.AsteroidDestroyer;
 import asteroids.destroyers.ShipDestroyer;
 
 /**
+ * This is the Alien Ships bullet class, it extends the standard bullet class but destroys asteroids and 
+ * the players ship.
+ * 
  * @author Lincoln Matheson
  *
  */

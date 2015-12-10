@@ -6,8 +6,10 @@ import asteroids.destroyers.ShipDestroyer;
 import asteroids.participants.Bullet;
 
 /**
- * This is the ships bullet class, it extendes the standard bullet class but destroys asteroids and 
+ * This is the ships bullet class, it extends the standard bullet class but destroys asteroids and 
  * alien ships.
+ * 
+ * @author Andy Dao
  */
 public class FriendlyBullet extends Bullet implements AsteroidDestroyer {
 
