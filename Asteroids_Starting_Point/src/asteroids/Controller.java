@@ -271,7 +271,6 @@ public class Controller implements KeyListener, ActionListener {
 		// If all the asteroids are gone, schedule a transition
 		if (pstate.countAsteroids() == 0) {
 			beatTimer.stop();
-			display.setLegend("Level " + (1 + level));
 			scheduleTransition(END_DELAY);
 		}
 	}
