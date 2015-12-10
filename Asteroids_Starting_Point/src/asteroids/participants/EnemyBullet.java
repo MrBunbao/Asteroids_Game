@@ -4,8 +4,8 @@
 package asteroids.participants;
 
 import asteroids.Participant;
-import asteroids.destroyers.AlienShip;
 import asteroids.destroyers.AsteroidDestroyer;
+import asteroids.destroyers.EnemyBulletDestroyer;
 import asteroids.destroyers.ShipDestroyer;
 
 /**
@@ -21,7 +21,7 @@ public class EnemyBullet extends Bullet implements ShipDestroyer, AsteroidDestro
 	}
 	@Override
 	public void collidedWith(Participant p) {
-		if (!p.isExpired() && !(p instanceof AlienShip)) {
+		if (p instanceof EnemyBulletDestroyer) {
             Participant.expire(this);
         }
 	}

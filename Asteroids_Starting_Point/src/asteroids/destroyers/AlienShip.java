@@ -116,7 +116,6 @@ public class AlienShip extends Participant implements ShipDestroyer, AsteroidDes
 	@Override
 	public void collidedWith(Participant p) {
 		if(p instanceof AsteroidDestroyer && !(p instanceof EnemyBullet)){
-			//playShipClip(false);
 			getSounds().playBangAlienShipClip();
 			controller.etGoneHome(worth);
 			Participant.expire(this);
@@ -127,7 +126,6 @@ public class AlienShip extends Participant implements ShipDestroyer, AsteroidDes
             controller.addParticipant(new Debris(this.getX(), this.getY(), 10));
 		}
 		if(p instanceof ShipDestroyer && !(p instanceof EnemyBullet)){
-			//playShipClip(false);
 			getSounds().playBangAlienShipClip();
 			controller.etGoneHome(worth);
 			Participant.expire(this);

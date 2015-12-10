@@ -160,7 +160,7 @@ public class Asteroid extends Participant implements ShipDestroyer, EnemyBulletD
             }
             
             // Inform the controller
-            if(!(p instanceof EnemyBulletDestroyer)){
+            if(p instanceof EnemyBullet){
             	controller.asteroidDestroyed(size);
             }
             

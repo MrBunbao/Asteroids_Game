@@ -256,7 +256,6 @@ public class Controller implements KeyListener, ActionListener {
 	public void asteroidDestroyed(int size) {
 
 		switch (size) {
-		
 		case 0:
 			Participant.getSounds().playBangSmallClip();
 		case 1:
