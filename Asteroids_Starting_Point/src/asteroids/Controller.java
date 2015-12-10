@@ -253,22 +253,21 @@ public class Controller implements KeyListener, ActionListener {
 	/**
 	 * An asteroid of the given size has been destroyed
 	 */
-	@SuppressWarnings("static-access")
 	public void asteroidDestroyed(int size) {
-		// 100 for small
-		// 50 for med
-		// 20 for big
+
 		switch (size) {
-		case -1:
-			ship.getSounds().playBangSmallClip();
-			scoreAdder(50);
+		
 		case 0:
-			ship.getSounds().playBangMediumClip();
-			scoreAdder(30);
+			Participant.getSounds().playBangSmallClip();
 		case 1:
-			ship.getSounds().playBangLargeClip();
-			scoreAdder(20);
+			Participant.getSounds().playBangMediumClip();
+		case 2:
+			Participant.getSounds().playBangLargeClip();
 		}
+		
+		// Adds the score
+		scoreAdder(Constants.ASTEROID_SCORE[size]);
+		
 		// If all the asteroids are gone, schedule a transition
 		if (pstate.countAsteroids() == 0) {
 			beatTimer.stop();
@@ -489,7 +488,7 @@ public class Controller implements KeyListener, ActionListener {
 	 * Increments the score
 	 */
 	public void scoreAdder(int n) {
-		score += n;
+		this.score += n;
 		display.setScore(score);
 	}
 
