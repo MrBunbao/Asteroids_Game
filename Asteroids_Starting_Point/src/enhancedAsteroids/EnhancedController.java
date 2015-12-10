@@ -181,7 +181,8 @@ public class EnhancedController implements KeyListener, ActionListener {
 			ship.notAccelerating();
 			ship = null;
 		}
-		if (alienShip != null) {
+		if (pstate.isAlienShip() == true) {
+			Participant.expire(alienShip);
 			alienShip = null;
 		}
 	}
@@ -377,11 +378,6 @@ public class EnhancedController implements KeyListener, ActionListener {
 			else if (ship == null) {
 				beatTimer.restart();
 				placeShip();
-			}
-			else if(alienShip == null)
-			{
-				Participant.getSounds().stopSaucerSmallClip();
-				Participant.getSounds().stopSaucerBigClip();
 			}
 
 			// Moves to next level

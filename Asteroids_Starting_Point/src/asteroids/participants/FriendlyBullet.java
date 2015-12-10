@@ -1,6 +1,7 @@
 package asteroids.participants;
 
 import asteroids.Participant;
+import asteroids.destroyers.AlienShipDestroyer;
 import asteroids.destroyers.AsteroidDestroyer;
 import asteroids.destroyers.FriendlyBulletDestroyer;
 import asteroids.participants.Bullet;
@@ -11,7 +12,7 @@ import asteroids.participants.Bullet;
  * 
  * @author Andy Dao
  */
-public class FriendlyBullet extends Bullet implements AsteroidDestroyer {
+public class FriendlyBullet extends Bullet implements AsteroidDestroyer, AlienShipDestroyer {
 
 	public FriendlyBullet (double x, double y, double direction){
 		super(x, y, direction);

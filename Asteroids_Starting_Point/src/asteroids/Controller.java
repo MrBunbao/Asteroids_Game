@@ -174,7 +174,8 @@ public class Controller implements KeyListener, ActionListener {
 			ship.notAccelerating();
 			ship = null;
 		}
-		if (alienShip != null) {
+		if (pstate.isAlienShip() == true) {
+			Participant.expire(alienShip);
 			alienShip = null;
 		}
 	}
@@ -331,8 +332,7 @@ public class Controller implements KeyListener, ActionListener {
 				ship.fire();
 				fireBullet = false;
 			}
-
-			// Refresh screen
+			
 			display.refresh();
 		}
 		// If the Alien Ship is not in play, call an Alien Ship
@@ -371,15 +371,11 @@ public class Controller implements KeyListener, ActionListener {
 				beatTimer.restart();
 				placeShip();
 			}
-			else if(alienShip == null)
-			{
-				Participant.getSounds().stopSaucerSmallClip();
-				Participant.getSounds().stopSaucerBigClip();
-			}
 
 			// Moves to next level
 			if (pstate.countAsteroids() == 0) {
 				level++;
+				
 				newLevel(level);
 			}
 		}

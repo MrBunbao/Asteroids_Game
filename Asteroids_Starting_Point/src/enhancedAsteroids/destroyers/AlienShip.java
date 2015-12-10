@@ -7,6 +7,7 @@ import java.awt.geom.*;
 
 import javax.swing.Timer;
 
+import asteroids.destroyers.AlienShipDestroyer;
 import enhancedAsteroids.destroyers.AsteroidDestroyer;
 import enhancedAsteroids.destroyers.ShipDestroyer;
 import enhancedAsteroids.Constants;
@@ -116,7 +117,7 @@ public class AlienShip extends Participant implements ShipDestroyer, AsteroidDes
 
 	@Override
 	public void collidedWith(Participant p) {
-		if(p instanceof AsteroidDestroyer && !(p instanceof EnemyBullet)){
+		if(p instanceof AlienShipDestroyer){
 			getSounds().playBangAlienShipClip();
 			controller.etGoneHome(worth);
 			Participant.expire(this);
@@ -125,16 +126,8 @@ public class AlienShip extends Participant implements ShipDestroyer, AsteroidDes
             controller.addParticipant(new Debris(this.getX(), this.getY(), 7));
             controller.addParticipant(new Debris(this.getX(), this.getY(), 5));
             controller.addParticipant(new Debris(this.getX(), this.getY(), 10));
-		}
-		if(p instanceof ShipDestroyer && !(p instanceof EnemyBullet)){
-			getSounds().playBangAlienShipClip();
-			controller.etGoneHome(worth);
-			Participant.expire(this);
-			controller.addParticipant(new Debris(this.getX(), this.getY(), 15));
-            controller.addParticipant(new Debris(this.getX(), this.getY(), 13));
-            controller.addParticipant(new Debris(this.getX(), this.getY(), 7));
-            controller.addParticipant(new Debris(this.getX(), this.getY(), 5));
-            controller.addParticipant(new Debris(this.getX(), this.getY(), 10));
+            getSounds().stopSaucerBigClip();
+            getSounds().stopSaucerSmallClip();
 		}
 		
 		// Stops the saucer sound
@@ -177,6 +170,8 @@ public class AlienShip extends Participant implements ShipDestroyer, AsteroidDes
 		}
 		else
 		{
+			Participant.getSounds().stopSaucerBigClip();
+			Participant.getSounds().stopSaucerSmallClip();
 			pathChanger.stop();
 			firingTimer.stop();
 		}

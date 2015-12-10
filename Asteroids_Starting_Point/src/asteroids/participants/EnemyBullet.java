@@ -4,6 +4,7 @@
 package asteroids.participants;
 
 import asteroids.Participant;
+import asteroids.destroyers.AlienShip;
 import asteroids.destroyers.AsteroidDestroyer;
 import asteroids.destroyers.EnemyBulletDestroyer;
 import asteroids.destroyers.ShipDestroyer;

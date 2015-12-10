@@ -14,7 +14,7 @@ import asteroids.participants.Debris;
 import asteroids.participants.EnemyBullet;
 import asteroids.participants.Ship;
 
-public class AlienShip extends Participant implements ShipDestroyer, AsteroidDestroyer, ActionListener {
+public class AlienShip extends Participant implements ShipDestroyer, FriendlyBulletDestroyer, ActionListener {
 
 	//point value
 	private int worth;
@@ -115,7 +115,7 @@ public class AlienShip extends Participant implements ShipDestroyer, AsteroidDes
 
 	@Override
 	public void collidedWith(Participant p) {
-		if(p instanceof AsteroidDestroyer && !(p instanceof EnemyBullet)){
+		if(p instanceof AlienShipDestroyer){
 			getSounds().playBangAlienShipClip();
 			controller.etGoneHome(worth);
 			Participant.expire(this);
@@ -124,26 +124,8 @@ public class AlienShip extends Participant implements ShipDestroyer, AsteroidDes
             controller.addParticipant(new Debris(this.getX(), this.getY(), 7));
             controller.addParticipant(new Debris(this.getX(), this.getY(), 5));
             controller.addParticipant(new Debris(this.getX(), this.getY(), 10));
-		}
-		if(p instanceof ShipDestroyer && !(p instanceof EnemyBullet)){
-			getSounds().playBangAlienShipClip();
-			controller.etGoneHome(worth);
-			Participant.expire(this);
-			controller.addParticipant(new Debris(this.getX(), this.getY(), 15));
-            controller.addParticipant(new Debris(this.getX(), this.getY(), 13));
-            controller.addParticipant(new Debris(this.getX(), this.getY(), 7));
-            controller.addParticipant(new Debris(this.getX(), this.getY(), 5));
-            controller.addParticipant(new Debris(this.getX(), this.getY(), 10));
-		}
-		
-		// Stops the saucer sound
-		if(worth == 200)
-		{
-			getSounds().stopSaucerBigClip();
-		}
-		else
-		{
-			getSounds().stopSaucerSmallClip();
+            getSounds().stopSaucerBigClip();
+            getSounds().stopSaucerSmallClip();
 		}
 	}
 	
@@ -157,6 +139,8 @@ public class AlienShip extends Participant implements ShipDestroyer, AsteroidDes
 			if(arg0.getSource() == pathChanger){
 				double[] velo = alienVelocity(leftOrRight);
 				this.setVelocity(velo[0], velo[1]);
+				
+				
 			}else if(arg0.getSource() == firingTimer){
 				double shipdir;
 				if(controller.getShip() == null)
@@ -176,6 +160,8 @@ public class AlienShip extends Participant implements ShipDestroyer, AsteroidDes
 		}
 		else
 		{
+			Participant.getSounds().stopSaucerBigClip();
+			Participant.getSounds().stopSaucerSmallClip();
 			pathChanger.stop();
 			firingTimer.stop();
 		}
