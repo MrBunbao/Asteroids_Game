@@ -128,6 +128,9 @@ public class Controller implements KeyListener, ActionListener {
 	 * The game is over. Displays a message to that effect.
 	 */
 	private void finalScreen() {
+		if(alienShipTimer.isRunning()){
+			alienShipTimer.stop();
+		}
 		display.setLegend(GAME_OVER);
 		display.removeKeyListener(this);
 	}
@@ -155,13 +158,13 @@ public class Controller implements KeyListener, ActionListener {
 	 */
 	private void placeAsteroids(int level) {
 		addParticipant(new Asteroid(0, 2, EDGE_OFFSET, EDGE_OFFSET, SLOW_ASTEROID_SPEED, this));
-//		addParticipant(new Asteroid(1, 2, SIZE - EDGE_OFFSET, EDGE_OFFSET, SLOW_ASTEROID_SPEED, this));
-//		addParticipant(new Asteroid(2, 2, EDGE_OFFSET, SIZE - EDGE_OFFSET, SLOW_ASTEROID_SPEED, this));
-//		addParticipant(new Asteroid(3, 2, SIZE - EDGE_OFFSET, SIZE - EDGE_OFFSET, SLOW_ASTEROID_SPEED, this));
-//		for (int i = 1; i < level; i++) {
-//			addParticipant(new Asteroid(new Random().nextInt(4), 2, new Random().nextInt(5) * EDGE_OFFSET,
-//					new Random().nextInt(5) * EDGE_OFFSET, SLOW_ASTEROID_SPEED, this));
-//		}
+		addParticipant(new Asteroid(1, 2, SIZE - EDGE_OFFSET, EDGE_OFFSET, SLOW_ASTEROID_SPEED, this));
+		addParticipant(new Asteroid(2, 2, EDGE_OFFSET, SIZE - EDGE_OFFSET, SLOW_ASTEROID_SPEED, this));
+		addParticipant(new Asteroid(3, 2, SIZE - EDGE_OFFSET, SIZE - EDGE_OFFSET, SLOW_ASTEROID_SPEED, this));
+		for (int i = 1; i < level; i++) {
+			addParticipant(new Asteroid(new Random().nextInt(4), 2, new Random().nextInt(5) * EDGE_OFFSET,
+					new Random().nextInt(5) * EDGE_OFFSET, SLOW_ASTEROID_SPEED, this));
+		}
 	}
 
 	/**

@@ -24,7 +24,7 @@ public class Debris extends Participant {
 		this.setVelocity(Constants.RANDOM.nextDouble(), Constants.RANDOM.nextDouble() * 4);
 		this.setPosition(x, y);
 		outline = line;
-		new ParticipantCountdownTimer(this, (int) (Constants.RANDOM.nextDouble() * 3500));
+		new ParticipantCountdownTimer(this, 2000);
 
 	}
 

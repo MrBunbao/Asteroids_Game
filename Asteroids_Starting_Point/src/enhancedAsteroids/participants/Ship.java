@@ -153,7 +153,7 @@ public class Ship extends Participant implements ShipDestroyer, AlienShipDestroy
     @Override
     public void collidedWith (Participant p)
     {
-        if (p instanceof ShipDestroyer)
+        if (p instanceof ShipDestroyer && !controller.isInvincible())
         {
             // Expire the ship from the game
             expire(this);
@@ -182,8 +182,13 @@ public class Ship extends Participant implements ShipDestroyer, AlienShipDestroy
     {
     }
 
+    public void fireBigGun(){
+    	BigGun bullet = new BigGun(this.getXNose(), this.getYNose(), this.getRotation());
+    	controller.addParticipant(bullet);
+    	Ship.getSounds().playFireClip();
+    }
 	public void fire() {
-		if(controller.bulletLimit(8) == false)
+		if(controller.bulletLimit(8) == false || controller.isRapidFire())
 		{
 			FriendlyBullet bullet = new FriendlyBullet (this.getXNose(), this.getYNose(), this.getRotation());
 			controller.addParticipant(bullet);

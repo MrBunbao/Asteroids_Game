@@ -8,6 +8,7 @@ import java.util.Set;
 import enhancedAsteroids.destroyers.AlienShip;
 import enhancedAsteroids.participants.Asteroid;
 import enhancedAsteroids.participants.FriendlyBullet;
+import enhancedAsteroids.participants.PowerUp;
 
 /**
  * Keeps track of the Participants, their motions, and
@@ -175,6 +176,23 @@ public class ParticipantState
     	}
     	return false;
     }
+    /**
+     * returns true if there is an power up in play
+     */
+    public boolean isPowerUpInPlay(){
+    	for(Participant p : participants){
+    		if(!p.isExpired() && p instanceof PowerUp){
+    			return true;
+    		}
+    	}
+    	for(Participant p : pendingAdds){
+    		if(!p.isExpired() && p instanceof PowerUp){
+    			return true;
+    		}
+    	}
+    	return false;
+    }
+   
     /**
      * Counts how many bullets are on screen.
      */

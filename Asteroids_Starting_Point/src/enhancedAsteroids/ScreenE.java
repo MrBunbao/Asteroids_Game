@@ -9,10 +9,19 @@ import static enhancedAsteroids.Constants.*;
  * The area of the display in which the game takes place.
  */
 @SuppressWarnings("serial")
-public class Screen extends JPanel
+public class ScreenE extends JPanel
 {
     // Legend that is displayed across the screen
     private String legend;
+    
+    //font of the legend
+    private Font legendFont;
+
+    //the name of the power up in play currently.
+    private String pwrUpName;
+    
+    //level of score multiplier
+    private String multiplierLabel;
     
     // Game controller
     private EnhancedController controller;
@@ -20,16 +29,20 @@ public class Screen extends JPanel
     /**
      * Creates an empty screen
      */
-    public Screen (EnhancedController controller)
+    public ScreenE (EnhancedController controller)
     {       
+    	pwrUpName = "";
+    	setMultiplier(controller.getMultiplier());
         this.controller = controller;
         legend = "";
         setPreferredSize(new Dimension(SIZE, SIZE));
         setMinimumSize(new Dimension(SIZE, SIZE));
         setBackground(Color.black);
         setForeground(Color.white);
-        setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 120));
+        legendFont = new Font(Font.SANS_SERIF, Font.PLAIN, 120);
+        setFont(legendFont);
         setFocusable(true);
+        
     }
 
     /**
@@ -40,7 +53,19 @@ public class Screen extends JPanel
         this.legend = legend;
     }
 
-    /**
+	/**
+	 * @param multiplier, the multiplier to set
+	 */
+	public void setMultiplier(int multiplier) {
+		multiplierLabel = "Score X" + multiplier;
+	}
+	/**
+	 * sets the label for the power-up panel
+	 */
+	public void setPowerUpLabel(String text) {
+		pwrUpName = text;
+	}
+	/**
      * Paint the participants onto this panel
      */
     @Override
@@ -59,5 +84,12 @@ public class Screen extends JPanel
         // Draw the legend across the middle of the panel
         int size = g.getFontMetrics().stringWidth(legend);
         g.drawString(legend, (SIZE - size) / 2, SIZE / 2);
+        g.setFont(new Font(getFont().getFontName(), Font.BOLD, 15));
+        g.drawString(multiplierLabel, 0, SIZE);
+        size = g.getFontMetrics().stringWidth(pwrUpName);
+        g.drawString(pwrUpName, SIZE - size, SIZE);
+        g.setFont(legendFont);
+        
     }
+
 }

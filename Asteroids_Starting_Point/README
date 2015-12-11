@@ -1,48 +1,14 @@
-Last update as of: 12/9 - Andy
-A lot of updates as you can see in the commits. Just know that I commented out the press 1 to skip levels button on the original game.
+12/10
+for extra credit we added some in-game power-ups including one that go as follows:
 
-Things added/changed:
-What I did all day today was just going through the game and fixing everything that I could and get it working as close as possible to 
-the original game.
+index 0 power-up allows for rapid fire for 4 seconds.
+index 1 power-up grants an extra life.
+index 2 maximizes the score multiplier for 4 seconds.
+index 3 allows a hot shot when the player presses "1"(hard to describe but pretty cool make sure to shoot one).
+index 4 allows invincibility for 4 seconds.
 
+change the parameter in the constructor of Power up in EnhancedController/actionPerformed after "this" keyword from RANDOM.nextInt(5) to the
+desired power-up and the power-up you want will appear as a little 15X15 box after a few seconds on level 1 of enhanced mode.
+run the ship over it and you'll see what power up you got(and how long you have left before it stops working if applicable)in the bottom right corner.
+in the bottom left corner you'll see the multiplier which is based on how quickly you've been destroying enemies.
 
-
-
-Last update as of: 12/3 - Andy
-Things added/changed:
-
----KEY CHANGES---
-~Added a Sounds library named Sounds.java in the 'sounds' package. This will allow us to call/play the audio clips when needed.
-~I commented out LifeDisplay as I'm not sure what you're wanting to do with this, but I wanted to be able to run the game
-without having the error pop-up window.
-~Added in /participants/Bullet.java
-~Added in /participants/TheBullet.java
-~Deleted/Moved /destroyers/Bullet.java 
-
----CHANGES MADE IN DISPLAY.JAVA---
-~Organized and made functional JPanel's where there won't be a gray box around the display anymore. (Gray appeared on the side).
-
----CHANGES MADE IN CONTROLLER.JAVA---
-~Made the movement of the ship match more towards the final project. 
-~~By adding booleans for the movements.
-~Changes were made in actionPerformed.
-~Changes were made in keyPressed.
-~Changes were made in keyReleased
-~Added a bulletLimit check. 
-
----CHANGES MADE IN CONSTANTS.JAVA---
-~Moved the BULLET_DURATION constant into this class from /destroyers/Bullet.java.
-
----CHANGES MADE IN /PARTICIPANTS/SHIPS.JAVA---
-~Added the flame of the ship.
-~Changes made in getOutline
-~~ Added how the flame should appear and disappear.
-~Changes made in turnRight/turnLeft
-~~ Changed both rotate values of +-Math.PI/128.0 to +-.30000000
-~Changes made in accelerate
-~~ Added so that when accelerated, it'll play "thrust.wav". (POSSIBLY MIGHT NEED TOUCHING UP. [Does it sound okay to you?])
-~Changes made in fire
-~~ Completed the fire method.
-~~ Plays "fire.wav" when the player shoots.
-
------------------END OF PATCH NOTES-----------------

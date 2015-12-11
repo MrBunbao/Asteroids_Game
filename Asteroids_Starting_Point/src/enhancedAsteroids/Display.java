@@ -16,7 +16,7 @@ import static enhancedAsteroids.Constants.*;
 public class Display extends JFrame
 {
 	// The area where the action takes place
-    private Screen screen;
+    private ScreenE screen;
     
     // Label for score
     private JLabel scoreLabel;
@@ -43,7 +43,7 @@ public class Display extends JFrame
         setMinimumSize(new Dimension(SIZE, SIZE + 50));
         
         // The main playing area and the controller
-        screen = new Screen(controller);
+        screen = new ScreenE(controller);
         
         // This panel contains the screen to prevent the screen from being resized
         JPanel screenPanel = new JPanel();
@@ -115,4 +115,24 @@ public class Display extends JFrame
     {
         screen.setLegend(s);
     }
+    /**
+     * sets the multiplier
+     */
+    public void setMultiplier (int multi){
+    	screen.setMultiplier(multi);
+    }
+    /**
+     * sets the powerup Label
+     */
+    public void setPowerUpLabel(String discription, int secLeft){
+    	if(secLeft == 0)
+    	{
+    		screen.setPowerUpLabel(discription);
+    	}
+    	else
+    	{
+    		screen.setPowerUpLabel(discription + " " + secLeft);
+    	}
+    }
+    
 }
