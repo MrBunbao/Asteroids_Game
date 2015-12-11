@@ -12,3 +12,13 @@ desired power-up and the power-up you want will appear as a little 15X15 box aft
 run the ship over it and you'll see what power up you got(and how long you have left before it stops working if applicable)in the bottom right corner.
 in the bottom left corner you'll see the multiplier which is based on how quickly you've been destroying enemies.
 
+Lines to be aware of:
+420: in EnhancedController class.
+544-546: in EnhancedController class.  
+
+55: in BigGun class. 
+
+fun project, thanks.
+
+Andy Dao
+Lincoln Matheson

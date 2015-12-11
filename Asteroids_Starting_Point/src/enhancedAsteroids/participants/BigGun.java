@@ -14,15 +14,15 @@ import enhancedAsteroids.destroyers.FriendlyBulletDestroyer;
 public class BigGun extends FriendlyBullet implements ActionListener {
 
 	private Shape outline;
-	
+
 	private Timer expirer;
-	
+
 	private Timer refreshSize;
-	
+
 	private double currentSize;
-	
+
 	private int phase;
-	
+
 	public BigGun(double x, double y, double direction) {
 		super(x, y, direction);
 		setSpeed(7);
@@ -34,26 +34,30 @@ public class BigGun extends FriendlyBullet implements ActionListener {
 		currentSize = 1;
 		phase = 0;
 	}
+
 	@Override
-    public void collidedWith (Participant p) {
-   
-    }
-	@Override
-	public void countdownComplete (Object payload){
-		
+	public void collidedWith(Participant p) {
+
 	}
+
 	@Override
-	protected Shape getOutline(){
+	public void countdownComplete(Object payload) {
+
+	}
+
+	@Override
+	protected Shape getOutline() {
 		return outline;
 	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == expirer){
+		if (e.getSource() == expirer) {
 			expire(this);
-		}else if(e.getSource() == refreshSize){
+		} else if (e.getSource() == refreshSize) {
 			phase++;
-			currentSize = (1 + (80 *  Math.pow(Math.abs(Math.sin((phase*Math.PI)/30)), 2)));
-			outline = new Ellipse2D.Double(0,0,currentSize,currentSize);
+			currentSize = (1 + (80 * Math.pow(Math.abs(Math.sin((phase * Math.PI) / 30)), 2)));
+			outline = new Ellipse2D.Double(0, 0, currentSize, currentSize);
 		}
 	}
 }

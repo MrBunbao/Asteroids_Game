@@ -27,9 +27,7 @@ public class Asteroids {
 				JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 		if (choice == 0) {
 			new Controller();
-		} 
-		else if (choice == 1) 
-		{
+		} else if (choice == 1) {
 			new EnhancedController();
 		}
 	}

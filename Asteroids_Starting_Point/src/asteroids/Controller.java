@@ -128,7 +128,7 @@ public class Controller implements KeyListener, ActionListener {
 	 * The game is over. Displays a message to that effect.
 	 */
 	private void finalScreen() {
-		if(alienShipTimer.isRunning()){
+		if (alienShipTimer.isRunning()) {
 			alienShipTimer.stop();
 		}
 		display.setLegend(GAME_OVER);
@@ -249,7 +249,7 @@ public class Controller implements KeyListener, ActionListener {
 
 		// Stops the beat from playing
 		beatTimer.stop();
-		
+
 		// Since the ship was destroyed, schedule a transition
 		scheduleTransition(END_DELAY);
 	}
@@ -267,10 +267,10 @@ public class Controller implements KeyListener, ActionListener {
 		case 2:
 			Participant.getSounds().playBangLargeClip();
 		}
-		
+
 		// Adds the score
 		scoreAdder(Constants.ASTEROID_SCORE[size]);
-		
+
 		// If all the asteroids are gone, schedule a transition
 		if (pstate.countAsteroids() == 0) {
 			beatTimer.stop();
@@ -334,7 +334,7 @@ public class Controller implements KeyListener, ActionListener {
 				ship.fire();
 				fireBullet = false;
 			}
-			
+
 			display.refresh();
 		}
 		// If the Alien Ship is not in play, call an Alien Ship
@@ -377,7 +377,7 @@ public class Controller implements KeyListener, ActionListener {
 			// Moves to next level
 			if (pstate.countAsteroids() == 0) {
 				level++;
-				
+
 				newLevel(level);
 			}
 		}
@@ -403,7 +403,7 @@ public class Controller implements KeyListener, ActionListener {
 	 */
 	public void callAlienShip(int level) {
 		AlienShip aShip;
-		
+
 		// Will call either a small or medium sized Alien Ship after level 2
 		if (level > 2) {
 			aShip = new AlienShip(Constants.RANDOM.nextBoolean(), this);
@@ -439,14 +439,6 @@ public class Controller implements KeyListener, ActionListener {
 		if ((keyCode == KeyEvent.VK_S || keyCode == KeyEvent.VK_SPACE) && ship != null) {
 			fireBullet = true;
 		}
-//		// We will need to get rid of this code before turning it in. This helps us test through levels quicker
-//		if (keyCode == KeyEvent.VK_1) {
-//			level++;
-//			beatTimer.stop();
-//			display.setLegend("Level " + (1 + level));
-//			scheduleTransition(END_DELAY);
-//			newLevel(level);
-//		}
 	}
 
 	/**
@@ -511,7 +503,8 @@ public class Controller implements KeyListener, ActionListener {
 	}
 
 	/**
-	 * Adds to the score if you destroy the ship. no matter what destroys the ship restarts the call ship timer.
+	 * Adds to the score if you destroy the ship. no matter what destroys the
+	 * ship restarts the call ship timer.
 	 */
 	public void etGoneHome(int worth) {
 		scoreAdder(worth);

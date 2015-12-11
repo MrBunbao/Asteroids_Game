@@ -24,12 +24,12 @@ import static enhancedAsteroids.Constants.*;
  */
 public class EnhancedController implements KeyListener, ActionListener {
 
-	//power-up in current use
+	// power-up in current use
 	private PowerUp pwr;
-	
+
 	// power up Timer if needed.
 	private Timer powerUpTimer;
-	
+
 	// The current level
 	private int level;
 
@@ -80,23 +80,22 @@ public class EnhancedController implements KeyListener, ActionListener {
 
 	// Used to get the return of the getAlienShip
 	private AlienShip alienShip;
-	
-	//score multiplier
+
+	// score multiplier
 	private int multiplier;
 
-	//score multiplier calculator
+	// score multiplier calculator
 	private double calculator;
 
-	//if powered up, how many ms while you remain that way.
+	// if powered up, how many ms while you remain that way.
 	private int secondsLeftPowered;
 
-	//power up effects 
-	
-	
+	// power up effects
+
 	private boolean rapidFire;
-	
+
 	private boolean maxMultiplier;
-	
+
 	private boolean bigGunLoaded;
 
 	private boolean invincible;
@@ -115,9 +114,9 @@ public class EnhancedController implements KeyListener, ActionListener {
 		// sets up the alienShipTimer
 		alienShipTimer = new Timer((5 + Constants.RANDOM.nextInt(6)) * 1000, this);
 
-		//sets up powerup timer.
+		// sets up powerup timer.
 		powerUpTimer = new Timer(5000, this);
-		
+
 		// Clear the transitionTime
 		transitionTime = Long.MAX_VALUE;
 
@@ -126,14 +125,14 @@ public class EnhancedController implements KeyListener, ActionListener {
 
 		// Beat Timer
 		beatTimer = new Timer(Constants.INITIAL_BEAT, this);
-		
-		//score multiplier
+
+		// score multiplier
 		multiplier = 1;
 
-		//initializes the powerup things.
+		// initializes the powerup things.
 		powerDown();
 		pwr = null;
-		
+
 		// Bring up the splash screen and start the refresh timer
 		splashScreen();
 		display.setVisible(true);
@@ -309,9 +308,9 @@ public class EnhancedController implements KeyListener, ActionListener {
 			Participant.getSounds().playBangLargeClip();
 		}
 
-		//effects the multiplier calculator.
+		// effects the multiplier calculator.
 		calculator += .28;
-		
+
 		// Adds the score
 		scoreAdder(Constants.ASTEROID_SCORE[size]);
 
@@ -340,13 +339,13 @@ public class EnhancedController implements KeyListener, ActionListener {
 		if (e.getSource() instanceof JButton) {
 			initialScreen();
 		}
-
+		// Will alternate beat
 		else if (e.getSource() == beatTimer && alternateBeat == 1) {
 			Participant.getSounds().playBeat1Clip();
 			beatTimer.setDelay(Math.max(Constants.FASTEST_BEAT, beatTimer.getDelay() - Constants.BEAT_DELTA));
 			alternateBeat = 2;
 		}
-
+		// Will alternate beat
 		else if (e.getSource() == beatTimer && alternateBeat == 2) {
 			Participant.getSounds().playBeat2Clip();
 			beatTimer.setDelay(Math.max(Constants.FASTEST_BEAT, beatTimer.getDelay() - Constants.BEAT_DELTA));
@@ -377,55 +376,59 @@ public class EnhancedController implements KeyListener, ActionListener {
 			// fireBullet to false right away so no continuous firing
 			if (fireBullet && ship != null) {
 				ship.fire();
-				if(!rapidFire)
-				{
-				fireBullet = false;
+				if (!rapidFire) {
+					fireBullet = false;
 				}
-				
+
 			}
-			
-			//duration of current power-up
-			if(secondsLeftPowered <= 0){
+
+			// duration of current power-up
+			if (secondsLeftPowered <= 0) {
 				secondsLeftPowered = 0;
-			}else{
-			secondsLeftPowered -= FRAME_INTERVAL;
+			} else {
+				secondsLeftPowered -= FRAME_INTERVAL;
 			}
-			
-			//set multiplier
+
+			// set multiplier
 			calculator -= .01;
-			multiplier = 1 + ((int)calculator);
-			if(multiplier < 1){
+			multiplier = 1 + ((int) calculator);
+			if (multiplier < 1) {
 				multiplier = 1;
 				calculator = 0;
-			}else if(multiplier > 4 || maxMultiplier){
+			} else if (multiplier > 4 || maxMultiplier) {
 				multiplier = 4;
 			}
 			display.setMultiplier(multiplier);
-			if(pwr != null){
-			display.setPowerUpLabel(pwr.getDiscription(), secondsLeftPowered/1000 );
+			if (pwr != null) {
+				display.setPowerUpLabel(pwr.getDiscription(), secondsLeftPowered / 1000);
 			}
-			
+
 			// Refresh screen
 			display.refresh();
 		}
-		else if(e.getSource() == powerUpTimer){
-			if(pwr == null)
-			{			
+
+		
+		
+		
+		
+		
+		
+		// Timer that flips between triggering a power-up to appear, and a
+		// power-up being used to expire.
+		else if (e.getSource() == powerUpTimer) {
+			if (pwr == null) {
 				this.addParticipant(new PowerUp(this, RANDOM.nextInt(5)));
 				powerUpTimer.stop();
-			}
-			else if(pwr != null)
-			{
+			} else if (pwr != null) {
 				pwr = null;
 				powerDown();
 				display.setPowerUpLabel("", 0);
 				powerUpTimer.stop();
-				powerUpTimer.setDelay((1000 * RANDOM.nextInt(7))+ 3000);
+				powerUpTimer.setDelay((1000 * RANDOM.nextInt(7)) + 3000);
 				powerUpTimer.start();
-				
-			}
-			else{
-				
+
+			} else {
+
 			}
 		}
 		// If the Alien Ship is not in play, call an Alien Ship
@@ -537,11 +540,14 @@ public class EnhancedController implements KeyListener, ActionListener {
 		if ((keyCode == KeyEvent.VK_S || keyCode == KeyEvent.VK_SPACE) && ship != null) {
 			fireBullet = true;
 		}
-		
+
+		// Shoots special bullets.
+		// Comment/Remove the if statement below, play game, hold space bar
+		// down, spin in a circle, BOOM, you win everytime.
 		if (keyCode == KeyEvent.VK_1) {
-			if(bigGunLoaded){
-			this.getShip().fireBigGun();
-			bigGunLoaded = false;
+			if (bigGunLoaded) {
+				this.getShip().fireBigGun();
+				bigGunLoaded = false;
 			}
 		}
 	}
@@ -569,11 +575,9 @@ public class EnhancedController implements KeyListener, ActionListener {
 			goForward = false;
 		}
 		if ((keyCode == KeyEvent.VK_S || keyCode == KeyEvent.VK_SPACE) && ship != null) {
-			if(rapidFire)
-			{	
-			}
-			else{
-			fireBullet = false;
+			if (rapidFire) {
+			} else {
+				fireBullet = false;
 			}
 		}
 	}
@@ -620,7 +624,8 @@ public class EnhancedController implements KeyListener, ActionListener {
 	}
 
 	/**
-	 * @param bigGunLoaded the bigGunLoaded to set
+	 * @param bigGunLoaded
+	 *            the bigGunLoaded to set
 	 */
 	public void setBigGunLoaded(boolean bigGunLoaded) {
 		this.bigGunLoaded = bigGunLoaded;
@@ -641,7 +646,7 @@ public class EnhancedController implements KeyListener, ActionListener {
 		calculator += .5;
 		scoreAdder(worth);
 		alienShipTimer.start();
-		
+
 	}
 
 	/**
@@ -650,11 +655,11 @@ public class EnhancedController implements KeyListener, ActionListener {
 	public int getMultiplier() {
 		return multiplier;
 	}
-	
+
 	/**
 	 * takes the power-ups off
 	 */
-	public void powerDown(){
+	public void powerDown() {
 		rapidFire = false;
 		invincible = false;
 		maxMultiplier = false;
@@ -665,51 +670,48 @@ public class EnhancedController implements KeyListener, ActionListener {
 	 */
 	public void powerUpEngage(PowerUp powerUp) {
 		pwr = powerUp;
-		if(pwr.getDuration() != 0)
-		{
+		if (pwr.getDuration() != 0) {
 			powerUpTimer.stop();
 			powerUpTimer.setDelay(pwr.getDuration());
 			secondsLeftPowered = pwr.getDuration();
 			powerUpTimer.restart();
-			switch(pwr.getIndex()){
+			switch (pwr.getIndex()) {
 			case 0:
 				rapidFire = true;
 				break;
 			case 2:
 				maxMultiplier = true;
 				break;
-			case 4: 
+			case 4:
 				invincible = true;
 				break;
-			
+
 			}
-		}
-		else 
-		{
-			switch(pwr.getIndex()){
+		} else {
+			switch (pwr.getIndex()) {
 			case 1:
-				//extra life power-up
+				// extra life power-up
 				lives++;
 				display.setLives(lives);
 				display.setPowerUpLabel(pwr.getDiscription(), 0);
 				break;
 			case 3:
-				//enables a big shot
+				// enables a big shot
 				bigGunLoaded = true;
 				display.setPowerUpLabel(pwr.getDiscription(), 0);
 				break;
 			}
 			pwr = null;
 			powerUpTimer.stop();
-			powerUpTimer.setDelay((1000 * RANDOM.nextInt(7))+ 3000);
+			powerUpTimer.setDelay((1000 * RANDOM.nextInt(7)) + 3000);
 			powerUpTimer.start();
 		}
-		
+
 	}
 
 	/**
 	 * 
-	 * @return wether or not the ship is rapid firing.
+	 * @return whether or not the ship is rapid firing.
 	 */
 	public boolean isRapidFire() {
 		return rapidFire;

@@ -9,6 +9,7 @@ import enhancedAsteroids.ParticipantCountdownTimer;
 /**
  * With certain participants, such as the Ship, AlienShip, etc... When collided
  * to a destroyer, it will make random lines as an effect for the debris.
+ * 
  * @author Andy Dao
  */
 public class Debris extends Participant {
@@ -16,7 +17,7 @@ public class Debris extends Participant {
 	private Shape outline;
 
 	public Debris(double x, double y, double length) {
-		
+
 		Path2D.Double line = new Path2D.Double();
 		line.moveTo(0.0, (-length) / 2.0);
 		line.lineTo(0.0, length / 2.0);
@@ -36,10 +37,9 @@ public class Debris extends Participant {
 	@Override
 	public void collidedWith(Participant p) {
 	}
-	
+
 	@Override
-	public void countdownComplete(Object payload)
-	{
+	public void countdownComplete(Object payload) {
 		Participant.expire(this);
 	}
 

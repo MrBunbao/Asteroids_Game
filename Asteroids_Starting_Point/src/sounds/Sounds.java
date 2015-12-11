@@ -4,7 +4,6 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import javax.sound.sampled.*;
 
-
 /**
  * The sound library. This will also pre create the clips so that there will be
  * no delay when we need to call the audio clip.
@@ -193,12 +192,12 @@ public class Sounds {
 			saucerBigClip.loop(saucerBigClip.LOOP_CONTINUOUSLY);
 		}
 	}
+
 	public void stopSaucerBigClip() {
 		if (saucerBigClip != null && saucerBigClip.isRunning()) {
 			saucerBigClip.stop();
 		}
 	}
-
 
 	@SuppressWarnings("static-access")
 	public void playSaucerSmallClip() {
@@ -211,13 +210,12 @@ public class Sounds {
 			saucerSmallClip.loop(saucerSmallClip.LOOP_CONTINUOUSLY);
 		}
 	}
-	
+
 	public void stopSaucerSmallClip() {
 		if (saucerSmallClip != null && saucerSmallClip.isRunning()) {
 			saucerSmallClip.stop();
 		}
 	}
-
 
 	@SuppressWarnings("static-access")
 	public void playThrustClip() {
@@ -235,6 +233,5 @@ public class Sounds {
 			thrustClip.stop();
 		}
 	}
-
 
 }

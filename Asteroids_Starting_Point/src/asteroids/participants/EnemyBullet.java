@@ -10,21 +10,22 @@ import asteroids.destroyers.EnemyBulletDestroyer;
 import asteroids.destroyers.ShipDestroyer;
 
 /**
- * This is the Alien Ships bullet class, it extends the standard bullet class but destroys asteroids and 
- * the players ship.
+ * This is the Alien Ships bullet class, it extends the standard bullet class
+ * but destroys asteroids and the players ship.
  * 
  * @author Lincoln Matheson
  *
  */
 public class EnemyBullet extends Bullet implements ShipDestroyer, AsteroidDestroyer {
-	public EnemyBullet (double x, double y, double direction){
+	public EnemyBullet(double x, double y, double direction) {
 		super(x, y, direction);
 	}
+
 	@Override
 	public void collidedWith(Participant p) {
 		if (p instanceof EnemyBulletDestroyer) {
-            Participant.expire(this);
-        }
+			Participant.expire(this);
+		}
 	}
 
 }
