@@ -543,11 +543,12 @@ public class EnhancedController implements KeyListener, ActionListener {
 
 		// Shoots special bullets.
 		// Comment/Remove the if statement below, play game, hold space bar
-		// down, spin in a circle, BOOM, you win everytime.
+		// down, spin in a circle, BOOM, you win every time.
 		if (keyCode == KeyEvent.VK_1) {
 			if (bigGunLoaded) {
 				this.getShip().fireBigGun();
 				bigGunLoaded = false;
+				display.setPowerUpLabel("Hot Shot Bullet Used", 0);
 			}
 		}
 	}
@@ -698,16 +699,17 @@ public class EnhancedController implements KeyListener, ActionListener {
 			case 3:
 				// enables a big shot
 				bigGunLoaded = true;
-				display.setPowerUpLabel(pwr.getDiscription(), 0);
+				display.setPowerUpLabel("Hot Shot Ready | Bullets left: 1 | Press 1 to shoot.", 0);
 				break;
 			}
+
 			pwr = null;
 			powerUpTimer.stop();
 			powerUpTimer.setDelay((1000 * RANDOM.nextInt(7)) + 3000);
 			powerUpTimer.start();
 		}
 
-	}
+	}	
 
 	/**
 	 * 

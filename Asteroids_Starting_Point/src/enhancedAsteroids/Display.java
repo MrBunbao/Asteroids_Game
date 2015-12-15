@@ -116,6 +116,7 @@ public class Display extends JFrame {
 	public void setMultiplier(int multi) {
 		screen.setMultiplier(multi);
 	}
+	
 
 	/**
 	 * sets the powerup Label
@@ -124,7 +125,7 @@ public class Display extends JFrame {
 		if (secLeft == 0) {
 			screen.setPowerUpLabel(discription);
 		} else {
-			screen.setPowerUpLabel(discription + " " + secLeft);
+			screen.setPowerUpLabel(discription + ": " + secLeft + " seconds left");
 		}
 	}
 

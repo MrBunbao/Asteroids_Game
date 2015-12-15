@@ -4,12 +4,10 @@ import java.awt.Shape;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Ellipse2D;
-import java.awt.geom.Path2D;
 
 import javax.swing.Timer;
 
 import enhancedAsteroids.Participant;
-import enhancedAsteroids.destroyers.FriendlyBulletDestroyer;
 
 public class BigGun extends FriendlyBullet implements ActionListener {
 
@@ -49,6 +47,7 @@ public class BigGun extends FriendlyBullet implements ActionListener {
 	protected Shape getOutline() {
 		return outline;
 	}
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

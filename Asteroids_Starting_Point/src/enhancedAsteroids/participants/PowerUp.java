@@ -1,7 +1,6 @@
 package enhancedAsteroids.participants;
 
 import java.awt.Shape;
-import java.awt.geom.Path2D;
 import java.awt.geom.Rectangle2D;
 
 import enhancedAsteroids.Constants;
@@ -19,6 +18,7 @@ public class PowerUp extends Participant {
 	private int index;
 
 	private int duration;
+	
 
 	public PowerUp(EnhancedController ec, int index) {
 		this.setPosition(Constants.RANDOM.nextInt(Constants.SIZE), Constants.RANDOM.nextInt(Constants.SIZE));
@@ -44,6 +44,7 @@ public class PowerUp extends Participant {
 		case 4:
 			duration = 4000;
 			setDiscription("Invincibillity");
+			break;
 		}
 		outline = new Rectangle2D.Double(0, 0, 15, 15);
 	}
@@ -59,7 +60,7 @@ public class PowerUp extends Participant {
 			expire(this);
 		}
 	}
-
+	
 	/**
 	 * @return the duration in m/s
 	 */
@@ -76,7 +77,7 @@ public class PowerUp extends Participant {
 	}
 
 	/**
-	 * @return the discription
+	 * @return the description
 	 */
 	public String getDiscription() {
 		return discription;
@@ -86,5 +87,4 @@ public class PowerUp extends Participant {
 	protected Shape getOutline() {
 		return outline;
 	}
-
 }
